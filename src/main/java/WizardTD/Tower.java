@@ -117,7 +117,7 @@ public class Tower {
         this.damage_level = damage_level;
     }
 
-    public PVector getPistion()
+    public PVector getPosition()
     {
         return new PVector(x, y);
     }
@@ -171,13 +171,30 @@ public class Tower {
         return false;
     }
 
-    public void display_range_level()
+    public void displayRange()
     {
-        String level_text = "";
-        if (range_level == 1)
-        {
-            level_text = "O";
-        }
+        int[] color = Colors.YELLOW.color.getColor();
+        pApplet.stroke(color[0], color[1], color[2]);
+        pApplet.fill(0, 0);
+        pApplet.ellipse(x + 16, y + 16, tower_range * 2, tower_range * 2);
+        pApplet.noStroke();
+    }
 
+    public void display()
+    {
+        pApplet.image(img.get(0), x, y, 32, 32);
+    }
+
+    public Fireball shoot(int idMonsterInRange, PVector posMonster)
+    {
+        if (idMonsterInRange == -1)
+        {
+            return null;
+        }
+        if(pApplet.frameCount % frame_shoot == 0)
+        {
+            return new Fireball(tower_damage, getPosition(), posMonster, idMonsterInRange);
+        }
+        return null;
     }
 }

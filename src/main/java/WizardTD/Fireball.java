@@ -51,4 +51,35 @@ public class Fireball {
         this.target_pos = target_pos;
         this.ID_target = ID_target;
     }
+
+    public void setup(PApplet pApplet, PImage img)
+    {
+        this.pApplet = pApplet;
+        this.img = img;
+    }
+
+    public void move()
+    {
+        PVector direction = PVector.sub(target_pos, current_pos);
+        if (direction.mag() > 0)
+        {
+            float newSpeed = Math.min(speed, direction.mag()); //change speed caculation
+            direction.normalize();
+            direction.mult(newSpeed);
+            current_pos = current_pos.add(direction);
+        }
+    }
+
+    public void display()
+    {
+        pApplet.image(img, current_pos.x, current_pos.y, 5, 5);
+        move();
+    }
+
+    public boolean checkOnTarget()
+    {
+        PVector dir = PVector.sub(target_pos, current_pos);
+        return dir.mag() == 0;
+    }
+
 }

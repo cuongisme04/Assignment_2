@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="WizardTD.SampleTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-10-12T06:35:47" hostname="Cuongs-MBP.modem" time="0.009">
+<testsuite name="WizardTD.SampleTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-10-27T16:30:22" hostname="Cuongs-MBP.modem" time="0.011">
   <properties/>
-  <testcase name="simpleTest()" classname="WizardTD.SampleTest" time="0.009"/>
+  <testcase name="simpleTest()" classname="WizardTD.SampleTest" time="0.011"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

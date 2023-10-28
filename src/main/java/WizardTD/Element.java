@@ -2,15 +2,13 @@ package WizardTD;
 
 import processing.core.PApplet;
 
-import java.awt.*;
-
 public class Element {
     private PApplet pApplet;
     Button FF, P, T, U1, U2, U3, M;
     private int num_Wave;
     private int wait_Wave;
-    private int total_Mana;
-    private int current_Mana;
+    private int mana_cap;
+    private int mana_current;
     private int max_Wave;
     private boolean pressed = false;
 
@@ -30,20 +28,20 @@ public class Element {
         this.wait_Wave = wait_Wave;
     }
 
-    public int getTotal_Mana() {
-        return total_Mana;
+    public int getMana_cap() {
+        return mana_cap;
     }
 
-    public void setTotal_Mana(int total_Mana) {
-        this.total_Mana = total_Mana;
+    public void setMana_cap(int mana_cap) {
+        this.mana_cap = mana_cap;
     }
 
-    public int getCurrent_Mana() {
-        return current_Mana;
+    public int getMana_current() {
+        return mana_current;
     }
 
-    public void setCurrent_Mana(int current_Mana) {
-        this.current_Mana = current_Mana;
+    public void setMana_current(int mana_current) {
+        this.mana_current = mana_current;
     }
 
     public Element(PApplet pApplet)
@@ -51,8 +49,8 @@ public class Element {
         this.pApplet = pApplet;
         this.num_Wave = 3;
         this.wait_Wave = 2;
-        this.total_Mana = 1000;
-        this.current_Mana = 200;
+        this.mana_cap = 1000;
+        this.mana_current = 200;
         this.max_Wave = 4;
         FF = new Button(pApplet, 648, 50, "FF", "2x speed");
         P = new Button(pApplet, 648, 110, "F", "PAUSE");
@@ -71,17 +69,20 @@ public class Element {
             pApplet.key = 'x';
         }
     }
+
     public void display()
     {
-        //side
+        // side menu
         int[] color = Colors.BROWN.color.getColor();
         pApplet.fill(color[0], color[1], color[2]);
         pApplet.rect(640, 40, 120, 680);
         pApplet.noStroke();
-        //head
+
+        // top of the game
         pApplet.fill(color[0], color[1], color[2]);
         pApplet.rect(0, 0, 760, 40);
         pApplet.noStroke();
+
         //wave
         pApplet.textSize(20);
         pApplet.fill(0);
@@ -90,10 +91,12 @@ public class Element {
             String display_Waves = String.format("Wave %d start: %d", num_Wave, wait_Wave);
             pApplet.text(display_Waves, 16, 10, 192, 32);
         }
+
         //mana
         pApplet.textSize(20);
         pApplet.fill(0);
         pApplet.text("MANA:", 316, 10, 70, 64);
+
         //mana bar
         pApplet.fill(255);
         pApplet.stroke(0);
@@ -101,9 +104,9 @@ public class Element {
         pApplet.rect(390, 10, 300, 20);
         pApplet.noStroke();
 
-        int current_Mana = 175;
-        int cap_Mana = 1000;
-        float pixelCurrentMana = (float) (300.0/cap_Mana) * current_Mana;
+        int mana_current = 175;
+        int mana_cap = 1000;
+        float pixelCurrentMana = (float) (300.0/mana_cap) * mana_current;
         color = Colors.LIGHT_BLUE.color.getColor();
         pApplet.fill(color[0], color[1], color[2]);
         pApplet.strokeWeight(2);
@@ -113,7 +116,7 @@ public class Element {
         pApplet.fill(0);
         pApplet.textSize(18);
         pApplet.textAlign(pApplet.CENTER);
-        String displayMana = String.format("%d/%d", current_Mana, cap_Mana);
+        String displayMana = String.format("%d/%d", mana_current, mana_cap);
         pApplet.text(displayMana, 390, 10, 300, 64);
 
         buttonInteract();

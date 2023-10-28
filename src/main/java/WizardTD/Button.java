@@ -6,8 +6,8 @@ public class Button {
     private PApplet pApplet;
     private float x;
     private float y;
-    private float w;
-    private float h;
+    private float width;
+    private float height;
     private String symbol;
     private String description;
     private boolean pressed = false;
@@ -17,8 +17,8 @@ public class Button {
         this.pApplet = pApplet;
         this.x = x;
         this.y = y;
-        this.w = 45;
-        this.h = 45;
+        this.width = 45;
+        this.height = 45;
         this.symbol = symbol;
         this.description = description;
     }
@@ -40,13 +40,14 @@ public class Button {
         {
             color = Colors.YELLOW.color.getColor();
         }
-        else {
+        else
+        {
             color = Colors.BROWN.color.getColor();
         }
         pApplet.fill(color[0], color[1], color[2]);
         pApplet.strokeWeight(2);
         pApplet.stroke(0);
-        pApplet.rect(x, y, w, h);
+        pApplet.rect(x, y, width, height);
         pApplet.noStroke();
 
         pApplet.fill(0);
